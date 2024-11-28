@@ -5,6 +5,8 @@
   #define serial (&Serial1)
 #elif defined(ARDUINO_ARCH_ESP32)
   #define serial (&Serial1)
+#elif defined(ARDUINO_ARCH_RP2040)
+  #define serial (&Serial1)
 #else
   // Fallback
   #include <SoftwareSerial.h>
@@ -18,6 +20,8 @@ void mt_serial_init(int8_t rx_pin, int8_t tx_pin, uint32_t baud) {
   // No call to begin(), as per original code
 #elif defined(ARDUINO_ARCH_ESP32)
   serial->begin(baud, SERIAL_8N1, rx_pin, tx_pin);
+#elif defined(ARDUINO_ARCH_RP2040)
+  serial.begin(baud);
 #else
   // Fallback
   serial = new SoftwareSerial(rx_pin, tx_pin);
