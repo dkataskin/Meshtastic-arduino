@@ -21,7 +21,7 @@ void mt_serial_init(int8_t rx_pin, int8_t tx_pin, uint32_t baud) {
 #elif defined(ARDUINO_ARCH_ESP32)
   serial->begin(baud, SERIAL_8N1, rx_pin, tx_pin);
 #elif defined(ARDUINO_ARCH_RP2040)
-  serial.begin(baud);
+  serial->begin(baud);
 #else
   // Fallback
   serial = new SoftwareSerial(rx_pin, tx_pin);
